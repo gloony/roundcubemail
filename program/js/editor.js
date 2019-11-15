@@ -57,7 +57,17 @@ function rcube_text_editor(config, id)
       paste_data_images: true,
       browser_spellcheck: true,
       anchor_bottom: false,
-      anchor_top: false
+      anchor_top: false,
+      init_instance_callback: function(editor){
+        // Addon to Send Mail with Ctrl + Enter
+        editor.shortcuts.add(
+            "ctrl+13",
+            null,
+            function(){
+              window.parent.$('.button.send').click();
+            }
+        );
+      }
     };
 
   // register spellchecker for plain text editor
